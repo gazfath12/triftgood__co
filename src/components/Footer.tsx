@@ -1,4 +1,4 @@
-import { Star, MessageSquare } from "lucide-react";
+import { Camera, Music2 } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -8,23 +8,29 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-5">
             <a href="#" className="font-display text-4xl font-bold tracking-tighter text-skena-light mb-6 inline-block">
-              TRIFTGOOD<span className="text-skena-accent">.</span>CO
+              TRIFTGOOD<span className="text-skena-accent">_</span>CO
             </a>
             <p className="text-skena-muted mb-8 max-w-sm">
               Menyelamatkan siluet kalcer dari tumpukan limbah kain. Curated streetwear, Y2K aesthetics, and vintage workwear.
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://instagram.com/triftgood_co"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 border border-skena-border flex items-center justify-center text-skena-light hover:bg-skena-accent hover:text-skena-dark hover:border-skena-accent transition-all"
+                title="Instagram"
               >
-                <Star className="w-5 h-5" />
+                <Camera className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://tiktok.com/@triftgood_co"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 border border-skena-border flex items-center justify-center text-skena-light hover:bg-skena-accent hover:text-skena-dark hover:border-skena-accent transition-all"
+                title="TikTok"
               >
-                <MessageSquare className="w-5 h-5 text-current" />
+                <Music2 className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -53,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-skena-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-skena-muted font-display uppercase tracking-wider">
-          <p>&copy; 2026 TRIFTGOOD__CO. STAY AUTHENTIC.</p>
+          <p>&copy; 2026 TRIFTGOOD_CO. STAY AUTHENTIC.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-skena-accent transition-colors">Privacy</a>
             <a href="#" className="hover:text-skena-accent transition-colors">Terms</a>

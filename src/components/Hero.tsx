@@ -7,9 +7,9 @@ export default function Hero() {
         <div className="relative w-full h-[60vh] md:h-[75vh] bg-skena-card overflow-hidden border border-skena-border group">
           {/* Header Img dengan filter street style */}
           <img
-            src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
+            src="/hero-skena.png"
             alt="Streetwear Skena"
-            className="w-full h-full object-cover object-top grayscale-[50%] contrast-125 group-hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700"
           />
 
           {/* Overlay Gradient Hitam */}

@@ -4,17 +4,26 @@ export default function Categories() {
   const categories = [
     {
       title: "Tops",
-      img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800&auto=format&fit=crop",
+      category: "T-Shirts",
+      img: "/categories/tops.png",
       alt: "Kaos Vintage",
     },
     {
+      title: "Outerwear",
+      category: "Hoodies",
+      img: "/categories/outerwear.png",
+      alt: "Hoodie Vintage",
+    },
+    {
       title: "Bottoms",
-      img: "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=800&auto=format&fit=crop",
+      category: "Pants",
+      img: "/categories/bottoms.png",
       alt: "Celana Kargo",
     },
     {
-      title: "Headwear",
-      img: "https://images.unsplash.com/photo-1556306535-0f09a536f01f?q=80&w=800&auto=format&fit=crop",
+      title: "Essentials",
+      category: "Accessories",
+      img: "/categories/essentials.png",
       alt: "Topi Trucker",
     },
   ];
@@ -33,11 +42,11 @@ export default function Categories() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((cat, i) => (
             <a
               key={i}
-              href="#"
+              href={`/?search=${cat.category}#koleksi`}
               className="group relative aspect-square border border-skena-border bg-skena-card overflow-hidden block"
             >
               <img
