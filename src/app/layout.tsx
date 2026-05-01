@@ -48,7 +48,24 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} bg-skena-dark text-skena-light font-sans antialiased selection:bg-skena-accent selection:text-skena-dark`}
       >
-        <Toaster position="top-center" richColors theme="dark" />
+        <Toaster 
+          position="top-center" 
+          theme="dark" 
+          toastOptions={{
+            style: {
+              background: '#1a1a1a',
+              border: '2px solid #D4FF00',
+              color: '#fff',
+              borderRadius: '0px',
+              fontFamily: 'inherit',
+              textTransform: 'uppercase',
+              fontSize: '11px',
+              fontWeight: 'bold',
+              letterSpacing: '0.05em',
+              boxShadow: '4px 4px 0px #000'
+            },
+          }}
+        />
         {children}
         <Cart />
       </body>

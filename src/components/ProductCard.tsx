@@ -16,18 +16,35 @@ type Product = {
   isFeatured: boolean;
 };
 
+import { toast } from "sonner";
+
 export default function ProductCard({ product, handleWhatsAppClick }: { product: Product, handleWhatsAppClick: (p: Product) => void }) {
   const { addItem } = useCart();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
   };
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     setCurrentImageIndex((prev) => (prev - 1 + product.images.length) % product.images.length);
+  };
+
+  const onAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0] || "https://placehold.co/400x500",
+    });
+    toast.success(`${product.name} masuk keranjang!`, {
+      description: "Sikat barang lain sebelum laku.",
+    });
   };
 
   return (
@@ -36,7 +53,10 @@ export default function ProductCard({ product, handleWhatsAppClick }: { product:
         product.stock === 0 ? "opacity-50 grayscale" : "hover:border-skena-accent"
       }`}
     >
-      <div className="relative w-full aspect-[4/5] bg-[#1a1a1a] overflow-hidden p-4 flex items-center justify-center">
+      <div 
+        onClick={() => handleWhatsAppClick(product)}
+        className="relative w-full aspect-[4/5] bg-[#1a1a1a] overflow-hidden p-4 flex items-center justify-center cursor-pointer"
+      >
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageIndex}
@@ -72,7 +92,7 @@ export default function ProductCard({ product, handleWhatsAppClick }: { product:
 
         {/* Dots */}
         {product.images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-30">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-30 pointer-events-none">
             {product.images.map((_, i) => (
               <div
                 key={i}
@@ -101,7 +121,10 @@ export default function ProductCard({ product, handleWhatsAppClick }: { product:
 
       <div className="p-4 flex flex-col flex-grow border-t border-skena-border">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-sm font-bold font-display uppercase text-skena-light leading-snug line-clamp-2 pr-2">
+          <h3 
+            onClick={() => handleWhatsAppClick(product)}
+            className="text-sm font-bold font-display uppercase text-skena-light leading-snug line-clamp-2 pr-2 cursor-pointer hover:text-skena-accent transition-colors"
+          >
             {product.name}
           </h3>
           <span className="text-skena-accent font-display font-bold text-xs">
@@ -122,12 +145,7 @@ export default function ProductCard({ product, handleWhatsAppClick }: { product:
             {product.stock === 0 ? "Udah Laku" : "Sikat Sekarang"}
           </button>
           <button
-            onClick={() => addItem({
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              image: product.images[0] || "https://placehold.co/400x500",
-            })}
+            onClick={onAddToCart}
             disabled={product.stock === 0}
             className="w-full py-2 bg-transparent border border-skena-border text-[10px] font-display font-bold uppercase tracking-widest text-skena-light hover:bg-skena-card transition-colors disabled:opacity-50"
           >

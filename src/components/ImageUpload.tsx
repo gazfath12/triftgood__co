@@ -39,8 +39,9 @@ export default function ImageUpload({
         ))}
         
         <CldUploadWidget 
-          uploadPreset="ml_default" // Most common default preset, user might need to change it if it fails
+          uploadPreset="ml_default"
           onSuccess={onUpload}
+          options={{ multiple: true }}
         >
           {({ open }) => {
             return (

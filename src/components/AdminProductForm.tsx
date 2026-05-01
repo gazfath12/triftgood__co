@@ -11,6 +11,7 @@ interface ProductFormProps {
 
 export default function ProductForm({ product }: ProductFormProps) {
   const [images, setImages] = useState<string[]>(product?.images || []);
+  const [isFeatured, setIsFeatured] = useState<boolean>(product?.isFeatured || false);
   const action = product ? updateProductAction : createProductAction;
   const [state, formAction, isPending] = useActionState(action, null);
 
@@ -91,19 +92,16 @@ export default function ProductForm({ product }: ProductFormProps) {
               <input
                 type="checkbox"
                 name="isFeatured"
-                defaultChecked={product?.isFeatured}
+                checked={isFeatured}
+                onChange={(e) => setIsFeatured(e.target.checked)}
                 className="sr-only"
               />
-              <div className={`w-12 h-12 border-2 ${product?.isFeatured ? "border-skena-accent bg-skena-accent/10" : "border-skena-border bg-skena-dark"} group-hover:border-skena-accent transition-all flex items-center justify-center`}>
-                <div className={`w-5 h-5 bg-skena-accent transition-transform ${product?.isFeatured ? "scale-100" : "scale-0"}`} />
-                <style jsx>{`
-                  input:checked + div > div { transform: scale(1); }
-                  input:checked + div { border-color: var(--color-skena-accent); background-color: rgba(212, 255, 0, 0.1); }
-                `}</style>
+              <div className={`w-12 h-12 border-2 ${isFeatured ? "border-skena-accent bg-skena-accent/10" : "border-skena-border bg-skena-dark"} group-hover:border-skena-accent transition-all flex items-center justify-center shadow-[4px_4px_0px_#000]`}>
+                <div className={`w-5 h-5 bg-skena-accent transition-transform ${isFeatured ? "scale-100" : "scale-0"}`} />
               </div>
             </div>
             <div className="flex flex-col">
-               <span className="uppercase text-[10px] font-bold tracking-widest text-skena-muted group-hover:text-skena-accent transition-colors">Featured Item</span>
+               <span className={`uppercase text-[10px] font-bold tracking-widest ${isFeatured ? "text-skena-accent" : "text-skena-muted"} group-hover:text-skena-accent transition-colors`}>Featured Item</span>
                <span className="text-[8px] text-skena-muted uppercase italic">Show on latest drop top</span>
             </div>
           </label>
