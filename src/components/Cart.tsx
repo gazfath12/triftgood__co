@@ -4,17 +4,19 @@ import { useCart } from "@/store/useCart";
 import { X, Trash2, ShoppingCart, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Cart() {
   const { items, removeItem, totalItems, totalPrice, clearCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || pathname?.startsWith("/admin")) return null;
 
   const handleCheckout = () => {
     const WHATSAPP_NUMBER = "6285745232506";
